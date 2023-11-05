@@ -6,7 +6,7 @@
 /*   By: hbulak <hbulak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 12:46:22 by hbulak            #+#    #+#             */
-/*   Updated: 2023/10/04 12:47:07 by hbulak           ###   ########.fr       */
+/*   Updated: 2023/11/03 11:04:11 by hbulak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0')
+	while (1)
 	{
 		if (*s == (char)c)
 			return ((char *)s);
+		if (*s == '\0')
+		{
+			if (*s == c)
+				return ((char *)s);
+			else
+				return (NULL);
+		}
 		s++;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
 }
 
 // int main()

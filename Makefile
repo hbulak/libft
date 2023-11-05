@@ -34,24 +34,21 @@ SRCS =	ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
 
-SRCS_BNS =	ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+SRCS_BNS =	ft_lstnew_bonus.c \
+			ft_lstadd_front_bonus.c \
+			ft_lstsize_bonus.c \
+			ft_lstlast_bonus.c \
+			ft_lstadd_back_bonus.c \
+			ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c \
+			ft_lstiter_bonus.c \
+			ft_lstmap_bonus.c
 
 OBJ_DIR = obj/
-ifdef WITH_BONUS
-OBJ = $(SRCS:%.c=$(OBJ_DIR)%.o) $(SRCS_BNS:%.c=$(OBJ_DIR)%.o)
-else
 OBJ = $(SRCS:%.c=$(OBJ_DIR)%.o)
-endif
+OBJ_BONUS = $(SRCS_BNS:%.c=$(OBJ_DIR)%.o)
 
 C_FLAGS = -Wall -Werror -Wextra
 CC = gcc
@@ -66,16 +63,20 @@ $(OBJ_DIR)%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(C_FLAGS) -c $< -o $@
 
-bonus: fclean clean
-	@$(MAKE) WITH_BONUS=1 all
-	@echo "\033[0;36mBonus Ready..\033[0m"
+bonus: $(OBJ) $(OBJ_BONUS)
+	@ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
+
+$(OBJ_BONUS): $(SRCS_BNS:%.c=$(OBJ_DIR)%.o)
 
 clean:
 	@rm -rdf $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) libft.so
 
 re: fclean all
 
 .PHONY: all bonus clean fclean re
+
+so: $(OBJ) $(OBJ_BONUS)
+	$(CC) -shared -o libft.so $(OBJ) $(OBJ_BONUS)

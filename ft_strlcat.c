@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbulak <hbulak@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hbulak <hbulak@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 12:52:01 by hbulak            #+#    #+#             */
-/*   Updated: 2023/10/11 10:33:57 by hbulak           ###   ########.fr       */
+/*   Updated: 2023/11/02 20:05:04 by hbulak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	dst_len = 0;
 	src_len = 0;
+	if (!dst && !dstsize)
+		return (0);
 	while (dst[dst_len] && dst_len < dstsize)
 		dst_len++;
 	while (src[src_len])

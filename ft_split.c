@@ -6,7 +6,7 @@
 /*   By: hbulak <hbulak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 12:40:04 by hbulak            #+#    #+#             */
-/*   Updated: 2023/10/11 16:03:40 by hbulak           ###   ########.fr       */
+/*   Updated: 2023/11/03 11:24:57 by hbulak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ static void	*free_tab(char **ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		i++;
-	}
-	while (i > 0)
-	{
 		free(ptr[i]);
-		i--;
+		i++;
 	}
 	free(ptr);
 	return (NULL);

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbulak <hbulak@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 12:38:54 by hbulak            #+#    #+#             */
-/*   Updated: 2023/11/02 19:00:19 by hbulak           ###   ########.fr       */
+/*   Created: 2023/10/04 12:32:23 by hbulak            #+#    #+#             */
+/*   Updated: 2023/10/11 19:28:50 by hbulak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_lstsize(t_list *lst)
 {
-	if (!s || fd < 0)
-		return ;
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
-}
+	int	count;
 
-// int main(void)
-// {
-// 		ft_putendl_fd("idil", 1);
-// }
+	if (!lst)
+		return (0);
+	count = 1;
+	while (lst->next)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
+}
